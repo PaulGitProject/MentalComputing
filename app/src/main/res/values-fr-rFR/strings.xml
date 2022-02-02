@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="game">Jeu</string>
+    <string name="score">Score</string>
+    <string name="validate_label">Valider Résultat</string>
+    <string name="scores_button_label">Afficher les scores</string>
+    <string name="score_valid_answer_message">Votre nombre de bonne réponses est : XX</string>
+    <string name="score_number_of_questions_message">Nombre total de question(s) posée(s) : XX</string>
+    <string name="previous_label">Précédent</string>
+    <string name="reset_label">Réinitialiser les scores</string>
+    <string name="last_question_answer_message">Exemple dernière question avec réponse 3+3 = 6</string>
+</resources>

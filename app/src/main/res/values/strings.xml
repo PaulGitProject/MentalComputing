@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name" translatable="false">Projet</string>
+    <string name="game">Game</string>
+    <string name="score">Score</string>
+    <string name="validate_label">Validate Result</string>
+    <string name="scores_button_label">Go to scores</string>
+    <string name="score_valid_answer_message">Number of correct answer : XX</string>
+    <string name="score_number_of_questions_message">Total number of questions : XX</string>
+    <string name="previous_label">Previous</string>
+    <string name="reset_label">Reset scores</string>
+    <string name="last_question_answer_message">Example of last question with answer 3+3 = 6</string>
+</resources>
