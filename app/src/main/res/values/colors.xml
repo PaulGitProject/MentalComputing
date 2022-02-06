@@ -10,4 +10,6 @@
     <color name="couleur_texte_score">#5E534D</color>
     <color name="couleur_texte_game">#5E534D</color>
     <color name="couleur_texte_main">#FFFFFFFF</color>
+    <color name="green_text_color">#50E456</color>
+    <color name="red_text_color">#FF0000</color>
 </resources>

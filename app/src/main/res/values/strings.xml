@@ -9,4 +9,7 @@
     <string name="previous_label">Previous</string>
     <string name="reset_label">Reset scores</string>
     <string name="last_question_answer_message">Example of last question with answer 3+3 = 6</string>
+    <string name="example_addition_label">Example of operation : 3+3 =</string>
+    <string name="correct_answer_label">Correct answer</string>
+    <string name="incorrect_answer_label">Incorrect Answer</string>
 </resources>

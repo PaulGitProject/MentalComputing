@@ -16,7 +16,7 @@
             android:id="@+id/calculation_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Exemple de calcul 3+3 = "
+            android:text="@string/example_addition_label"
             android:textAlignment="viewStart"
             android:textColor="@color/couleur_texte_game"
             android:textSize="20sp"
@@ -32,7 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="number"
+            android:minHeight="48dp" />
 
         <Space
             android:layout_width="match_parent"
@@ -55,16 +56,16 @@
             android:id="@+id/correct_result_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="#50E456"
+            android:text="@string/correct_answer_label"
+            android:textColor="@color/green_text_color"
             android:visibility="gone" />
 
         <TextView
             android:id="@+id/incorrect_result_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="#FF0000"
+            android:text="@string/incorrect_answer_label"
+            android:textColor="@color/red_text_color"
             android:visibility="gone" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
