@@ -1,45 +1,24 @@
-package com.paul.mentalcounting.services;
+package com.paul.projet.services;
 
-import com.paul.mentalcounting.models.OperationModel;
-import com.paul.mentalcounting.models.exceptions.DivideException;
-import com.paul.mentalcounting.models.exceptions.OperatorException;
-import com.paul.mentalcounting.models.exceptions.ResultException;
+import com.paul.projet.models.OperationModel;
+
+import java.util.Random;
 
 public class OperationService {
 
-    public String computeResult(OperationModel operationModel) throws ResultException, DivideException, OperatorException {
-        double firstValueAsDouble,secondValueAsDouble = 0;
-        double result = 0;
+    public OperationModel generateRandomOperation() {
+        return new OperationModel(generateRandomInteger(),generateRandomInteger(), generateRandomOperator());
+    }
 
-        String operator = operationModel.getOperator();
+    private int generateRandomInteger(){
+        int maxValue = 100;
 
-        try{
-            firstValueAsDouble = Double.parseDouble(operationModel.getFirstValue());
-            secondValueAsDouble = Double.parseDouble(operationModel.getSecondValue());
-        }catch (NumberFormatException e){
-            throw new ResultException("Values are not number", e);
-        }
+        return new Random().nextInt(maxValue);
+    }
 
+    private String generateRandomOperator(){
+        String[] operators = {"+","-","*"};
 
-
-        switch (operator){
-            case "+":
-                result = firstValueAsDouble + secondValueAsDouble;
-                break;
-            case "-":
-                result = firstValueAsDouble - secondValueAsDouble;
-                break;
-            case "*":
-                result = firstValueAsDouble * secondValueAsDouble;
-                break;
-            case "/":
-                if(secondValueAsDouble == 0){
-                    throw new DivideException("Can't divide by 0");
-                }
-                result = firstValueAsDouble / secondValueAsDouble;
-                break;
-            default:
-                throw new OperatorException("Invalid operator");
-        }
+        return operators[new Random().nextInt(operators.length)];
     }
 }

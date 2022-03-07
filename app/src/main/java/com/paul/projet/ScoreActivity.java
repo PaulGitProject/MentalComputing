@@ -20,7 +20,7 @@ public class ScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_score);
 
         ColorDrawable colorDrawable
-                = new ColorDrawable(Color.parseColor("#957C6C"));
+                = new ColorDrawable(getResources().getColor(R.color.menu_color));
 
         // Set BackgroundDrawable
         getSupportActionBar().setBackgroundDrawable(colorDrawable);

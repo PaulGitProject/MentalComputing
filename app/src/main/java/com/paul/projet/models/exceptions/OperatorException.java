@@ -1,4 +1,4 @@
-package com.paul.mentalcounting.models.exceptions;
+package com.paul.projet.models.exceptions;
 
 public class OperatorException extends Exception{
 

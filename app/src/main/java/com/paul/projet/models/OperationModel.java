@@ -1,23 +1,23 @@
-package com.paul.mentalcounting.models;
+package com.paul.projet.models;
 
 public class OperationModel {
 
-    private String firstValue;
-    private String secondValue;
-    private String operator;
+    private final int firstValue;
+    private final int secondValue;
+    private final String operator;
 
 
-    public OperationModel(String first, String second, String operator){
+    public OperationModel(int first, int second, String operator){
         this.firstValue = first;
         this.secondValue = second;
         this.operator = operator;
     }
 
-    public String getFirstValue() {
+    public int getFirstValue() {
         return firstValue;
     }
 
-    public String getSecondValue() {
+    public int getSecondValue() {
         return secondValue;
     }
 

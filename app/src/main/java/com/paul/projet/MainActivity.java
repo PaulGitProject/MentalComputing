@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         associateOpenActivityToButton(R.id.score_button, ScoreActivity.class);
 
         ColorDrawable colorDrawable
-                = new ColorDrawable(Color.parseColor("#957C6C"));
+                = new ColorDrawable(getResources().getColor(R.color.menu_color));
 
         // Set BackgroundDrawable
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(colorDrawable);

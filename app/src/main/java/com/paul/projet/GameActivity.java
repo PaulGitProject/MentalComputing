@@ -12,6 +12,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.paul.projet.models.OperationModel;
+import com.paul.projet.services.OperationService;
+
 public class GameActivity extends AppCompatActivity {
 
     @Override
@@ -20,10 +23,13 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         ColorDrawable colorDrawable
-                = new ColorDrawable(Color.parseColor("#957C6C"));
+                = new ColorDrawable(getResources().getColor(R.color.menu_color));
 
         // Set BackgroundDrawable
         getSupportActionBar().setBackgroundDrawable(colorDrawable);
+
+        OperationService operationService = new OperationService();
+        OperationModel operationModel = operationService.generateRandomOperation();
     }
 
 
