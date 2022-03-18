@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
@@ -25,7 +26,12 @@ public class GameActivity extends AppCompatActivity {
     private TextView operationTextView;
     private EditText resultEditText;
     private OperationModel operationModel;
+
     OperationService operationService;
+
+    private String _firstValue = "";
+    private String _secondValue = "";
+    private String _operator = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,17 +88,22 @@ public class GameActivity extends AppCompatActivity {
 
                 if(verifyResult){
                     setTextVisibility(operatorTextViewIncorrect, operatorTextViewEmpty, operatorTextViewCorrect);
-                    generateRandomCalculation();
 
+                    SharedPreferences prefs = getSharedPreferences("my_prefs", MODE_PRIVATE);
+                    SharedPreferences.Editor edit = prefs.edit();
+                    edit.putInt(ScoreActivity.FIRST, this.operationModel.getFirstValue());
+                    edit.putInt(ScoreActivity.SECOND, this.operationModel.getSecondValue());
+                    edit.putString(ScoreActivity.OPERATOR, this.operationModel.getOperator());
+                    edit.putInt(ScoreActivity.LASTRESULT, result);
+                    edit.apply();
+
+                    generateRandomCalculation();
                 }else{
                     setTextVisibility(operatorTextViewEmpty, operatorTextViewCorrect, operatorTextViewIncorrect);
                 }
             }catch (NumberFormatException e){
                 setTextVisibility(operatorTextViewCorrect, operatorTextViewIncorrect, operatorTextViewEmpty);
             }
-
-
-
     }
 
     @Override
