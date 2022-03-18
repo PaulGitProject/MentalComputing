@@ -8,7 +8,7 @@
     <string name="score_number_of_questions_message">Nombre total de question(s) posée(s) : XX</string>
     <string name="previous_label">Précédent</string>
     <string name="reset_label">Réinitialiser les scores</string>
-    <string name="last_question_answer_message">Exemple dernière question avec réponse %1$s</string>
+    <string name="last_question_answer_message">Dernier résultat valide : %1$s</string>
     <string name="example_addition_label">Exemple de calcul : 3+3 =</string>
     <string name="correct_answer_label">Resultat Correct</string>
     <string name="incorrect_answer_label">Resultat Incorrect</string>
