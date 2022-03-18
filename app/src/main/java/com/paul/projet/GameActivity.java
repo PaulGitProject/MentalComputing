@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,6 +25,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView operationTextView;
     private EditText resultEditText;
     private OperationModel operationModel;
+    OperationService operationService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,48 +40,60 @@ public class GameActivity extends AppCompatActivity {
 
         resultEditText = findViewById(R.id.answer_input);
         operationTextView = findViewById(R.id.calculation_text);
+        operationService = new OperationService();
 
-        OperationService operationService = new OperationService();
-        operationModel = operationService.generateRandomOperation();
-
-        String calcul = operationModel.getFirstValue() + " " + operationModel.getOperator() + " " + operationModel.getSecondValue();
-        operationTextView.setText(calcul);
+        generateRandomCalculation();
 
         Button validateResult = findViewById(R.id.validate_button);
 
         validateResult.setOnClickListener(view -> {
-            try {
-                onValidateClick();
-            } catch (OperatorException e) {
-                e.printStackTrace();
-            }
+            onValidateClick();
         });
     }
 
-    private void onValidateClick() throws OperatorException {
-        int result = Integer.parseInt(resultEditText.getText().toString());
-        verifyResult(result);
+    private void generateRandomCalculation(){
+        operationModel = operationService.generateRandomOperation();
+
+        String operation = getString(R.string.operation_template, operationModel.getFirstValue(), operationModel.getOperator(), operationModel.getSecondValue());
+        this.operationTextView.setText(operation);
+    }
+
+    private void onValidateClick() {
+        try {
+            String textResult = resultEditText.getText().toString();
+            verifyResult(textResult);
+        }catch (OperatorException operatorException){
+            operatorException.printStackTrace();
+        }
     }
 
 
 
-    private void verifyResult(int result) throws OperatorException {
+    private void verifyResult(String resultText) throws OperatorException {
             VerifyUserResultService verifyUserResultService = new VerifyUserResultService();
 
-            boolean verifyResult = verifyUserResultService.verifyComputeResult(operationModel, result);
+            TextView operatorTextViewCorrect = findViewById(R.id.correct_result_text);
+            TextView operatorTextViewIncorrect = findViewById(R.id.incorrect_result_text);
+            TextView operatorTextViewEmpty = findViewById(R.id.empty_result_text);
 
-            if(verifyResult){
-                TextView operatorTextViewCorrect = findViewById(R.id.correct_result_text);
-                operatorTextViewCorrect.setVisibility(View.VISIBLE);
-                TextView operatorTextViewIncorrect = findViewById(R.id.incorrect_result_text);
-                operatorTextViewIncorrect.setVisibility(View.GONE);
-                this.resultEditText.setVisibility(View.GONE);
-            }else{
-                TextView operatorTextViewIncorrect = findViewById(R.id.incorrect_result_text);
-                operatorTextViewIncorrect.setVisibility(View.VISIBLE);
+            try {
+                int result = Integer.parseInt(resultText);
+                boolean verifyResult = verifyUserResultService.verifyComputeResult(operationModel, result);
+
+                if(verifyResult){
+                    setTextVisibility(operatorTextViewIncorrect, operatorTextViewEmpty, operatorTextViewCorrect);
+                    generateRandomCalculation();
+
+                }else{
+                    setTextVisibility(operatorTextViewEmpty, operatorTextViewCorrect, operatorTextViewIncorrect);
+                }
+            }catch (NumberFormatException e){
+                setTextVisibility(operatorTextViewCorrect, operatorTextViewIncorrect, operatorTextViewEmpty);
             }
-    }
 
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,5 +119,11 @@ public class GameActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setTextVisibility(TextView toBeGoneFirst, TextView toBeGoneSecond, TextView toBeVisible){
+        toBeGoneFirst.setVisibility(View.GONE);
+        toBeGoneSecond.setVisibility(View.GONE);
+        toBeVisible.setVisibility(View.VISIBLE);
     }
 }

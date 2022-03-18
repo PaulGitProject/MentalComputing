@@ -12,4 +12,5 @@
     <string name="example_addition_label">Exemple de calcul : 3+3 =</string>
     <string name="correct_answer_label">Resultat Correct</string>
     <string name="incorrect_answer_label">Resultat Incorrect</string>
+    <string name="empty_answer_label">Veuillez entrer un résultat</string>
 </resources>
